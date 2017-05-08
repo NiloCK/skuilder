@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="Fraction.js"></script>
+    <title>Simplification Demo</title>
+
+    <script>
+        function drawReductionSequence() {
+            var f = new Fraction(document.getElementById("Fraction").value);
+            document.body.appendChild(
+                document.createElement('hr'));
+
+            do {
+                document.body.appendChild(
+                    f.getCanvasDrawing(200));
+            } while (f.reduce());
+
+        }
+
+        window.onload = function () {
+            document.getElementById('Fraction').focus();
+        };
+    </script>
+</head>
+<body>
+    Simplification Demo
+    <hr />
+    <input type="text" id="Fraction" value="" />
+    <button onclick="drawReductionSequence()">Reduce Me</button>
+    <br /><br />
+</body>
+</html>

@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--<style>
+        #Link {
+            font-size: smaller;
+        }
+        .question
+        .display {
+            font-size : x-large;
+            width: 100%;
+
+        }
+        .question
+        .display input{
+            display: inline;
+        }
+        
+        .question
+        .complete {
+            display: none;
+        }
+    </style>-->
+    <link href="../Content/normalize.css" rel="stylesheet" />
+    <script src="../Scripts/d3/d3.js"></script>
+    <link href="../Content/skeleton.css" rel="stylesheet" />
+    <script src="../Scripts/moment.js"></script>
+    <script src="../Scripts/jquery-2.1.3.js"></script>
+    <script src="MultQuiz.js"></script>
+    <script>
+        var $table;
+        var $n;
+        var objQParams;
+        var currentQuiz;
+
+        function init() {
+            $('#QuizSetup input').change(updatePreview);
+            $table = $('#Table');
+
+            checkQueryString(window.location.search);
+            updatePreview();
+        }
+
+        // checks if there was a configured quiz
+        // in the location querystring
+        function checkQueryString(args) {
+            if (!args) {
+                return false;
+            }
+            if (args.charAt(0) === '?') {
+                args = args.substr(1);
+            }
+
+            var params = args.split('&');
+            if (params[0]) {
+                for (var i = 0; i < params.length; i++) {
+                    params[i] = params[i].split('=');
+                }
+            } else {
+                return false;
+            }
+
+            var qParam = {}
+            qParam.numQ = getParam('numQ');
+            qParam.min = getParam('min') || 2;
+            qParam.max = getParam('max') || 10;
+            qParam.maxmin = getParam('maxmin') || 10;
+
+            // make the quiz if it has been specified!
+            if (qParam.numQ) {
+                makeQuiz(qParam);
+            }
+
+            function getParam(name){
+                if (params) {
+                    for (var i = 0; i < params.length; i++) {
+                        if (name === params[i][0]) {
+                            return parseInt(params[i][1]);
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+         
+        */
+        function makeQuiz(qParams) {
+            var objQParams = qParams || getQuizParamsFromSetup();
+            currentQuiz = new Quiz(objQParams.numQ, objQParams.min, objQParams.max, objQParams.maxmin);
+
+            $row = $('.row');
+            $row.empty();
+            var dom = currentQuiz.getDom();
+            dom.className = "four columns";
+            dom.id = "QuizDiv";
+            $('.row').append(dom);
+        }
+
+        
+        function updatePreview() {
+            var qParams = getQuizParamsFromSetup();
+
+            // set the preview table
+            $('td').css('background-color', 'white');
+
+            for (var i = qParams.min; i <= qParams.max; i++) {
+                $('.' + i).css('background-color', 'green');
+            }
+            for (var i = qParams.max + 1; i <= 10; i++) {
+                $('.' + i).css('background-color', 'white');
+            }
+            for (var i = qParams.min - 1; i >= 0; i--) {
+                $('.' + i).css('background-color', 'white');
+            }
+
+            $('td').each(function () {
+                if (parseInt(this.classList[0]) > qParams.maxmin &&
+                    parseInt(this.classList[1]) > qParams.maxmin) {
+                    $(this).css('background-color', 'white');
+                }
+            });
+
+            // set the link
+            $('#Link').html(function () {
+                var str = 'A quiz with this configuration can be loaded with this ';
+                str += '<a href="';
+                var link = window.location.href +
+                            '?'                         +
+                            'numQ=' + qParams.numQ + '&'+
+                            'min=' + qParams.min + '&'  +
+                            'max=' + qParams.max + '&'  +
+                            'maxmin=' + qParams.maxmin;
+                str += link;
+                str += '">link</a>. ';
+                str += 'Right click and copy location/copy shortcut to send the link someplace.';
+                return str;
+            }());
+        }
+        function adjustMaxMin() {
+            if (parseInt($('#MaxNum').val()) > parseInt($('#MaxMin').val())){
+                $('#MaxMin').val($('#MaxNum').val());
+            }
+        }
+        function getQuizParamsFromSetup() {
+            var ret = {
+                numQ : parseInt($('#NumQuestions').val()),
+                max: parseInt($('#MaxNum').val()),
+                min: parseInt($('#MinNum').val()),
+                maxmin : parseInt($('#MaxMin').val())
+            }
+            return ret;
+        }
+        window.onload = init;
+    </script>
+    <style>
+        #Table td{
+            border: 1px solid rgb(199, 199, 199);
+            text-align: center;
+        }
+    </style>
+    <title>Multiplication Quizzery</title>
+</head>
+<body>
+    <div class="container">
+        
+            <div id="MainRow" style="padding-top: 50px;" class="row">
+                
+                <div id="QuizSetup">
+                    <div class="four columns">
+                        <h3>Quiz Setup:</h3>
+                        <label for="NumQuestions">Number of Questions: </label>
+                        <input type="number" autocomplete="off" id="NumQuestions" name="NumQuestions" value="10" />
+                        <br />
+                        <label for="MinNum">Smallest digit: </label>
+                        <input type="number" autocomplete="off" min="0" max="99" id="MinNum" name="MinNum" value="0" />
+                        <br />
+                        <label for="MaxNum">Greatest digit: </label>
+                        <input type="number" onchange="adjustMaxMin();" autocomplete="off" min="0" max="100" id="MaxNum" name="MaxNum" value="10" />
+                        <br />
+                        <label for="MaxMin">MaxMin: </label>
+                        <input type="number" autocomplete="off" min="0" max="100" id="MaxMin" name="MaxMin" value="10" />
+                        <br />
+                        <button onclick="makeQuiz();">Make Quiz</button>
+                        <br />
+                        <p id="Link"></p>
+                    </div>
+                </div>
+                <div class="eight columns">
+                    <h4>Preview: </h4>
+                    <p>Highlighted squares are eligible for the quiz.</p>
+                    <table id="Table">
+                        <tr>
+                            <td>&times;</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>0</td>
+                            <td id="0x0" class="0 0"></td>
+                            <td id="0x1" class="0 1"></td>
+                            <td id="0x2" class="0 2"></td>
+                            <td id="0x3" class="0 3"></td>
+                            <td id="0x4" class="0 4"></td>
+                            <td id="0x5" class="0 5"></td>
+                            <td id="0x6" class="0 6"></td>
+                            <td id="0x7" class="0 7"></td>
+                            <td id="0x8" class="0 8"></td>
+                            <td id="0x9" class="0 9"></td>
+                            <td id="0x10" class="0 10"></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td id="1x0" class="1 0"></td>
+                            <td id="1x1" class="1 1"></td>
+                            <td id="1x2" class="1 2"></td>
+                            <td id="1x3" class="1 3"></td>
+                            <td id="1x4" class="1 4"></td>
+                            <td id="1x5" class="1 5"></td>
+                            <td id="1x6" class="1 6"></td>
+                            <td id="1x7" class="1 7"></td>
+                            <td id="1x8" class="1 8"></td>
+                            <td id="1x9" class="1 9"></td>
+                            <td id="1x10" class="1 10"></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td id="2x0" class="2 0"></td>
+                            <td id="2x1" class="2 1"></td>
+                            <td id="2x2" class="2 2"></td>
+                            <td id="2x3" class="2 3"></td>
+                            <td id="2x4" class="2 4"></td>
+                            <td id="2x5" class="2 5"></td>
+                            <td id="2x6" class="2 6"></td>
+                            <td id="2x7" class="2 7"></td>
+                            <td id="2x8" class="2 8"></td>
+                            <td id="2x9" class="2 9"></td>
+                            <td id="2x10" class="2 10"></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td id="3x0" class="3 0"></td>
+                            <td id="3x1" class="3 1"></td>
+                            <td id="3x2" class="3 2"></td>
+                            <td id="3x3" class="3 3"></td>
+                            <td id="3x4" class="3 4"></td>
+                            <td id="3x5" class="3 5"></td>
+                            <td id="3x6" class="3 6"></td>
+                            <td id="3x7" class="3 7"></td>
+                            <td id="3x8" class="3 8"></td>
+                            <td id="3x9" class="3 9"></td>
+                            <td id="3x10" class="3 10"></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td id="4x0" class="4 0"></td>
+                            <td id="4x1" class="4 1"></td>
+                            <td id="4x2" class="4 2"></td>
+                            <td id="4x3" class="4 3"></td>
+                            <td id="4x4" class="4 4"></td>
+                            <td id="4x5" class="4 5"></td>
+                            <td id="4x6" class="4 6"></td>
+                            <td id="4x7" class="4 7"></td>
+                            <td id="4x8" class="4 8"></td>
+                            <td id="4x9" class="4 9"></td>
+                            <td id="4x10" class="4 10"></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td id="5x0" class="5 0"></td>
+                            <td id="5x1" class="5 1"></td>
+                            <td id="5x2" class="5 2"></td>
+                            <td id="5x3" class="5 3"></td>
+                            <td id="5x4" class="5 4"></td>
+                            <td id="5x5" class="5 5"></td>
+                            <td id="5x6" class="5 6"></td>
+                            <td id="5x7" class="5 7"></td>
+                            <td id="5x8" class="5 8"></td>
+                            <td id="5x9" class="5 9"></td>
+                            <td id="5x10" class="5 10"></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td id="6x0" class="6 0"></td>
+                            <td id="6x1" class="6 1"></td>
+                            <td id="6x2" class="6 2"></td>
+                            <td id="6x3" class="6 3"></td>
+                            <td id="6x4" class="6 4"></td>
+                            <td id="6x5" class="6 5"></td>
+                            <td id="6x6" class="6 6"></td>
+                            <td id="6x7" class="6 7"></td>
+                            <td id="6x8" class="6 8"></td>
+                            <td id="6x9" class="6 9"></td>
+                            <td id="6x10" class="6 10"></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td id="7x0" class="7 0"></td>
+                            <td id="7x1" class="7 1"></td>
+                            <td id="7x2" class="7 2"></td>
+                            <td id="7x3" class="7 3"></td>
+                            <td id="7x4" class="7 4"></td>
+                            <td id="7x5" class="7 5"></td>
+                            <td id="7x6" class="7 6"></td>
+                            <td id="7x7" class="7 7"></td>
+                            <td id="7x8" class="7 8"></td>
+                            <td id="7x9" class="7 9"></td>
+                            <td id="7x10" class="7 10"></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td id="8x0" class="8 0"></td>
+                            <td id="8x1" class="8 1"></td>
+                            <td id="8x2" class="8 2"></td>
+                            <td id="8x3" class="8 3"></td>
+                            <td id="8x4" class="8 4"></td>
+                            <td id="8x5" class="8 5"></td>
+                            <td id="8x6" class="8 6"></td>
+                            <td id="8x7" class="8 7"></td>
+                            <td id="8x8" class="8 8"></td>
+                            <td id="8x9" class="8 9"></td>
+                            <td id="8x10" class="8 10"></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td id="9x0" class="9 0"></td>
+                            <td id="9x1" class="9 1"></td>
+                            <td id="9x2" class="9 2"></td>
+                            <td id="9x3" class="9 3"></td>
+                            <td id="9x4" class="9 4"></td>
+                            <td id="9x5" class="9 5"></td>
+                            <td id="9x6" class="9 6"></td>
+                            <td id="9x7" class="9 7"></td>
+                            <td id="9x8" class="9 8"></td>
+                            <td id="9x9" class="9 9"></td>
+                            <td id="9x10" class="9 10"></td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td id="10x0" class="10 0"></td>
+                            <td id="10x1" class="10 1"></td>
+                            <td id="10x2" class="10 2"></td>
+                            <td id="10x3" class="10 3"></td>
+                            <td id="10x4" class="10 4"></td>
+                            <td id="10x5" class="10 5"></td>
+                            <td id="10x6" class="10 6"></td>
+                            <td id="10x7" class="10 7"></td>
+                            <td id="10x8" class="10 8"></td>
+                            <td id="10x9" class="10 9"></td>
+                            <td id="10x10" class="10 10"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        <table id="QuizResultsTable" class="two columns" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>

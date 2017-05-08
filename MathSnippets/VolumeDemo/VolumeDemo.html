@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="../Content/skeleton.css" rel="stylesheet" />
+    <link href="../Content/normalize.css" rel="stylesheet" />
+    <script src="../Scripts/three.js/build/three.js"></script>
+    <script src="VolumeDemo.js"></script>
+    <script>
+        var rect;
+        
+        function newRect() {
+            rect = new RectPrism(document.getElementById("Length").value,
+                document.getElementById('Width').value,
+                document.getElementById('Height').value);
+
+            document.getElementById('right').appendChild(rect.getCanvasDrawing());
+            document.getElementById('middle').appendChild(rect.getControls());
+        };
+    </script>
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <div class="four columns" id="left">
+                <h3>Make a Prism:</h3>
+                <label for="Length">Length: </label><input type="number" id="Length" name="Length" value="4" />
+                <label for="Width">Width: </label><input type="number" id="Width" name="Width" value="3" />
+                <label for="Height">Height: </label><input type="number" id="Height" name="Height" value="2" />
+                <input type="button" class="button" value="Create" onclick="newRect();" />
+            </div>
+            <div class="four columns" id="middle">
+                <div></div>
+            </div>
+            <div class="four columns" id="right"></div>
+        </div>
+    </div>
+    
+</body>
+</html>
