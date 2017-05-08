@@ -1,8 +1,0 @@
-{
-  "name": "skuilder",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://www.github.com/nilock/skuilder.git",
-  "author": "Colin Kennedy <colinkennedy@hotmail.com>",
-  "license": "GPL"
-}
