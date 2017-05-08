@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <style>
+        #logo {
+            font-size: x-large;
+        }
+        
+        #logoFade {
+            animation: fadeout 3s, shrink 5s;
+            animation-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes fadeout {
+            from {
+                opacity: 1
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes shrink {
+            to {
+                font-size: 0%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="logo">
+        Sk<span id="logoFade">ill B</span>uilder
+    </div>
+</body>
+
+</html>
