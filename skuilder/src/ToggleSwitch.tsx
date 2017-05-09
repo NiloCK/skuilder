@@ -92,7 +92,7 @@ class ToggleSwitch extends RX.Component<ToggleSwitchProps, null> {
                     easing: RX.Animated.Easing.InOut()
                 })
             ])
-            .start();
+                .start();
         }
     }
 
@@ -101,12 +101,12 @@ class ToggleSwitch extends RX.Component<ToggleSwitchProps, null> {
         const backgroundStyle = [_styles.toggleSwitchBackground, this._toggleColorAnimationStyle];
 
         return (
-            <RX.Button style={ _styles.container } onPress={ this._handleClick }>
-                <RX.View style={ _styles.toggleSwitch }>
-                    <RX.Animated.View style={ backgroundStyle }/>
-                    <RX.Animated.View style={ knobStyles }/>
+            <RX.Button style={_styles.container} onPress={this._handleClick}>
+                <RX.View style={_styles.toggleSwitch}>
+                    <RX.Animated.View style={backgroundStyle} />
+                    <RX.Animated.View style={knobStyles} />
                 </RX.View>
-             </RX.Button>
+            </RX.Button>
         );
     }
 
