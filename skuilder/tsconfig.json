@@ -18,6 +18,9 @@
       "node"
     ]
   },
+  "typeAcquisition": {
+    "enable": true
+  },
   "include": [
     "./src/**/*"
   ]
