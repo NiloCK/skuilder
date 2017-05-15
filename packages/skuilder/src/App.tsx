@@ -2,9 +2,11 @@
 * This file demonstrates a basic ReactXP app.
 */
 
-import RX = require('reactxp');
+import * as RX from 'reactxp'
+
 
 import ToggleSwitch from './ToggleSwitch';
+import AdditionProblem from './questions/addition';
 
 interface AppState {
     toggleValue?: boolean;
@@ -49,7 +51,7 @@ class App extends RX.Component<null, AppState> {
     constructor() {
         super();
 
-        this._translationValue = new RX.Animated.Value(-100);
+        this._translationValue = new RX.Animated.Value(-10);
         this._animatedStyle = RX.Styles.createAnimatedTextStyle({
             transform: [
                 {
@@ -65,10 +67,10 @@ class App extends RX.Component<null, AppState> {
 
     componentDidMount() {
         let animation = RX.Animated.timing(this._translationValue, {
-              toValue: 0,
-              easing: RX.Animated.Easing.OutBack(),
-              duration: 500
-            }
+            toValue: 0,
+            easing: RX.Animated.Easing.OutBack(),
+            duration: 500
+        }
         );
 
         animation.start();
@@ -76,27 +78,29 @@ class App extends RX.Component<null, AppState> {
 
     render(): JSX.Element | null {
         return (
-            <RX.View style={ styles.container }>
-                <RX.Animated.Text style={ [styles.helloWorld, this._animatedStyle] }>
-                    Hello World
+            <RX.View style={styles.container}>
+                <RX.Animated.Text style={[styles.helloWorld, this._animatedStyle]}>
+                    This has been edited
                 </RX.Animated.Text>
-                <RX.Text style={ styles.welcome }>
+                <RX.Text style={styles.welcome}>
                     Welcome to ReactXP
                 </RX.Text>
-                <RX.Text style={ styles.instructions }>
+                <RX.Text style={styles.instructions}>
                     Edit App.tsx to get started
                 </RX.Text>
-                <RX.Link style={ styles.docLink } url={ 'https://microsoft.github.io/reactxp/docs' }>
+                <RX.Link style={styles.docLink} url={'https://microsoft.github.io/reactxp/docs'}>
                     View ReactXP documentation
                 </RX.Link>
 
-                <RX.Text style={ styles.toggleTitle }>
+                <RX.Text style={styles.toggleTitle}>
                     Here is a simple control built using ReactXP
                 </RX.Text>
                 <ToggleSwitch
-                    value={ this.state.toggleValue }
-                    onChange={ this._onChangeToggle }
+                    value={this.state.toggleValue}
+                    onChange={this._onChangeToggle}
                 />
+                <AdditionProblem a={4} b={6} />
+
             </RX.View>
         );
     }
