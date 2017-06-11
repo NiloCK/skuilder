@@ -1,0 +1,22 @@
+.correct-true {
+    animation: greenFade 500ms ease-out;
+}
+
+@keyframes greenFade {
+    0% { background: green;}
+    100% {background: white;}
+}
+
+.correct-false {
+    animation: purpleFade 1000ms ease-out;
+}
+
+@keyframes purpleFade {
+    0% { background: purple;}
+    100% {background: white;}
+}
+
+.finger {
+    height: 100%;
+    width: auto;
+}

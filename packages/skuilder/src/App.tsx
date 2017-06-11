@@ -3,14 +3,21 @@
 */
 
 import * as RX from 'reactxp'
+import Keybinder from './appUtilities/Keybinder'
+import Recorder from './appUtilities/Recorder'
 
+import SessionReport from './components/sessionReport';
+import ProgressChart from './components/ProgressChart';
 
-import ToggleSwitch from './ToggleSwitch';
 import AdditionProblem from './questions/addition';
+import Multiplication from './questions/multiplication';
+import Division from './questions/division';
+import { QuestionView, QuestionViewProps } from './skuilder-base/BaseClasses'
 
-interface AppState {
-    toggleValue?: boolean;
-}
+const qTypes = [
+    Multiplication,
+    Division
+]
 
 const styles = {
     container: RX.Styles.createViewStyle({
@@ -44,9 +51,45 @@ const styles = {
     })
 };
 
+enum ViewState {
+    QUESTIONS,
+    REPORT,
+    PROGRESS
+}
+
+interface AppState {
+    record?: Array<Object>
+    sessionQcount?: number
+    viewState?: ViewState
+}
+
+function randDigit() {
+    return getRandomInt(0, 10);
+};
+
+function getRandomInt(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 class App extends RX.Component<null, AppState> {
     private _translationValue: RX.Animated.Value;
     private _animatedStyle: RX.Types.AnimatedTextStyleRuleSet;
+    private UIBindings: Keybinder;
+
+    newQuestion() {
+
+        this.setState({
+            record: this.state ? this.state.record : Recorder.getRecord(),
+            sessionQcount: this.state ? (this.state.sessionQcount + 1) : 0
+        });
+
+        if (this.state.sessionQcount >= 25) {
+            //window.alert("You've done " + this.state.sessionQcount + " questions! Great! Have some free time!");
+            this.setState({
+                viewState: ViewState.REPORT
+            })
+        }
+    }
 
     constructor() {
         super();
@@ -59,13 +102,47 @@ class App extends RX.Component<null, AppState> {
                 }
             ]
         });
+        this.UIBindings = new Keybinder([
+            {
+                binding: "/",
+                callback: (e: ExtendedKeyboardEvent) => {
+                    console.log("Toggling report state");
+
+                    if (this.state.viewState === ViewState.QUESTIONS) {
+                        this.setState({
+                            viewState: ViewState.REPORT
+                        })
+                    } else {
+                        this.setState({
+                            viewState: ViewState.QUESTIONS
+                        })
+                    }
+                }
+            },
+            {
+                binding: "?",
+                callback: (e: ExtendedKeyboardEvent) => {
+                    console.log("Toggling progress state");
+
+                    this.setState({
+                        viewState: ViewState.PROGRESS
+                    })
+                }
+            }
+        ])
+
 
         this.state = {
-            toggleValue: true
+            record: Recorder.getRecord(),
+            sessionQcount: 0,
+            viewState: ViewState.QUESTIONS
         };
+
     }
 
     componentDidMount() {
+        this.UIBindings.bind();
+
         let animation = RX.Animated.timing(this._translationValue, {
             toValue: 0,
             easing: RX.Animated.Easing.OutBack(),
@@ -78,31 +155,46 @@ class App extends RX.Component<null, AppState> {
 
     render(): JSX.Element | null {
         return (
+
             <RX.View style={styles.container}>
                 <RX.Animated.Text style={[styles.helloWorld, this._animatedStyle]}>
-                    This has been edited
-                </RX.Animated.Text>
+                    AHHHHHH!
+                        </RX.Animated.Text>
                 <RX.Text style={styles.welcome}>
-                    Welcome to ReactXP
-                </RX.Text>
-                <RX.Text style={styles.instructions}>
-                    Edit App.tsx to get started
-                </RX.Text>
-                <RX.Link style={styles.docLink} url={'https://microsoft.github.io/reactxp/docs'}>
-                    View ReactXP documentation
-                </RX.Link>
+                    Let's get a little practice with our multiplication and division facts.
+                        </RX.Text>
 
-                <RX.Text style={styles.toggleTitle}>
-                    Here is a simple control built using ReactXP
-                </RX.Text>
-                <ToggleSwitch
-                    value={this.state.toggleValue}
-                    onChange={this._onChangeToggle}
-                />
-                <AdditionProblem a={4} b={6} />
+                {(this.state.viewState === ViewState.REPORT) ?
+                    <SessionReport records={this.state.record} /> :
+                    null}
+
+                {(this.state.viewState === ViewState.QUESTIONS) ?
+                    (<RX.Text style={styles.toggleTitle}>
+                        Use the RIGHT and LEFT Arrow Keys to move on the numberpad and help with counting-by!
+                    </RX.Text>) : null
+                }
+
+                {(this.state.viewState === ViewState.QUESTIONS) ?
+                    this.renderCurrentQ() : null
+                }
+
+                {(this.state.viewState === ViewState.PROGRESS) ?
+                    (<ProgressChart questionType="multiplication" />) :
+                    null
+                }
+
 
             </RX.View>
         );
+    }
+
+    renderCurrentQ(): JSX.Element | null {
+        console.log("Trying to render");
+
+        const Question = qTypes[getRandomInt(0, 1)];
+        const questionProps = Question.getProps();
+
+        return <Question {...questionProps} onanswer={this.newQuestion.bind(this)} />
     }
 
     // Note that we define this as a variable rather than a normal method. Using this
@@ -110,9 +202,9 @@ class App extends RX.Component<null, AppState> {
     // that each time we pass the variable as a prop in the render function, it will
     // not change. We want to avoid unnecessary prop changes because this will trigger
     // extra work within React's virtual DOM diffing mechanism.
-    private _onChangeToggle = (newValue: boolean) => {
-        this.setState({ toggleValue: newValue });
-    }
+    // private _onChangeToggle = (newValue: boolean) => {
+    //     this.setState({ toggleValue: newValue });
+    // }
 }
 
 export = App;
