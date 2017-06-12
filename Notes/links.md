@@ -23,6 +23,12 @@ http://mathjs.org/
 
 Symbolic computation and expression tree parser in JS for node, whatever.
 
+## Easel.js
+
+https://github.com/CreateJS/EaselJS
+
+Seems to be a pretty rad canvas drawing / animation library. Part of a suite (CreateJS) that includes SoundJS and TweenJS.
+
 # Tech. Stack Stuff
 
 ## couch / pouch - as 'backends' for offline-first webapps
