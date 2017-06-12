@@ -1,0 +1,11 @@
+{
+  "exclude": [
+    "node_modules"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}

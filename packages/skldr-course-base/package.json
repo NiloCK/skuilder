@@ -11,5 +11,12 @@
     "url": "https://www.github.com/nilock/skuilder"
   },
   "author": "Colin Kennedy",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-native": "^0.45.1",
+    "react-native-windows": "^0.45.0-rc.1",
+    "reactxp": "^0.42.0-rc.10"
+  }
 }
