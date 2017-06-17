@@ -1,6 +1,6 @@
 import * as RX from 'reactxp';
 import Numpad from '../components/numpad';
-import { Question, QuestionView, QuestionViewProps } from '../skuilder-base/BaseClasses'
+import { Question, QuestionView, QuestionViewProps } from 'skldr-course-base'
 
 interface SingleDigitDivisionProblemProps extends QuestionViewProps {
     question: SingleDigitDivisionQuestion

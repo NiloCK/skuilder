@@ -1,6 +1,6 @@
 import * as RX from 'reactxp';
 import Numpad from '../components/numpad';
-import { QuestionView, QuestionViewProps, Question } from '../skuilder-base/BaseClasses'
+import { QuestionView, QuestionViewProps, Question } from 'skldr-course-base'
 
 const styles = {
     form: RX.Styles.createViewStyle({
