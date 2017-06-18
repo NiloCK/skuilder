@@ -2,11 +2,11 @@ import * as RX from 'reactxp';
 import * as Moment from 'moment';
 // import Recorder from '../appUtilities/Recorder'
 
-abstract class Viewable<P extends RX.CommonProps> extends RX.Component<RX.CommonProps, null> {
+export abstract class Viewable<P extends RX.CommonProps> extends RX.Component<RX.CommonProps, null> {
     startTime: Moment.Moment;
     props: P;
 
-    abstract render(): JSX.Element;
+    abstract render(): any;
 
     init(): void {
         this.startTime = Moment();
@@ -22,7 +22,7 @@ abstract class Viewable<P extends RX.CommonProps> extends RX.Component<RX.Common
     }
 }
 
-interface PropsDefinition {
+export interface PropsDefinition {
     props: Array<PropDefinition<any>>;
 }
 
@@ -33,7 +33,7 @@ interface NumberPropDefinition extends PropDefinition<number> {
     int?: boolean;
 }
 
-interface PropDefinition<T> {
+export interface PropDefinition<T> {
     type: keyof T;
     name: string; // the name of the property
 }
@@ -48,20 +48,6 @@ export abstract class Question {
 
     abstract isCorrect(answer: any): boolean;
 }
-
-// spitballing....
-// class Subtraction extends Question<{
-//     props: [
-//         { type: keyof number, name: 'minuend', max: 10 }
-//     ]
-// }>
-// {
-//     listProps() {
-//         let c = (typeof this);
-
-//     }
-
-// }
 
 interface ClassConstructor extends Function {
     name: string
@@ -165,7 +151,7 @@ export interface QuestionViewProps extends RX.CommonProps {
 /**
  * The record of a completed question.
  */
-export interface QuestionRecord {
+interface QuestionRecord {
     q: string, // the ClassName of the question
     props: any,
     answer: any,
@@ -174,3 +160,4 @@ export interface QuestionRecord {
     time: number // milliseconds
     [key: string]: any
 }
+
