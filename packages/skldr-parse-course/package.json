@@ -13,7 +13,8 @@
   "keywords": [
     "typescript",
     "compiler",
-    "ast"
+    "ast",
+    "skuilder"
   ],
   "author": "Colin Kennedy",
   "license": "GPL-3.0"
