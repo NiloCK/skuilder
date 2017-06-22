@@ -29,6 +29,12 @@ https://github.com/CreateJS/EaselJS
 
 Seems to be a pretty rad canvas drawing / animation library. Part of a suite (CreateJS) that includes SoundJS and TweenJS.
 
+## Storybook
+
+https://github.com/storybooks/storybook
+
+A dev and testing environment for React / React-Native UI components. Could be used to rig up a viewer for individual components at development time.
+
 # Tech. Stack Stuff
 
 ## couch / pouch - as 'backends' for offline-first webapps
