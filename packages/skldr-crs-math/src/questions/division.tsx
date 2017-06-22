@@ -2,11 +2,11 @@ import * as RX from 'reactxp';
 import Numpad from '../components/numpad';
 import { Question, QuestionView, QuestionViewProps } from 'skldr-course-base'
 
-interface SingleDigitDivisionProblemProps extends QuestionViewProps {
+export interface SingleDigitDivisionProblemProps extends QuestionViewProps {
     question: SingleDigitDivisionQuestion
 }
 
-class SingleDigitDivisionQuestion extends Question {
+export class SingleDigitDivisionQuestion extends Question {
     a: number = getRandomInt(0, 10);
     b: number = getRandomInt(1, 10);
 

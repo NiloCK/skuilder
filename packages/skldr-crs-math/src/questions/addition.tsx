@@ -1,10 +1,8 @@
 import * as RX from 'reactxp';
-import Recorder from '../appUtilities/Recorder'
 
-interface SingleDigitAdditionProblemProps extends RX.CommonProps {
+export interface SingleDigitAdditionProblemProps extends RX.CommonProps {
     a: number;
     b: number;
-    db: Recorder;
 }
 
 class SingleDigitAdditionProblem extends RX.Component<SingleDigitAdditionProblemProps, null> {

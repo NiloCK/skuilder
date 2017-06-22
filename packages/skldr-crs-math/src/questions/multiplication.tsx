@@ -13,7 +13,7 @@ function getRandomInt(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }; //todo move this somewhere sensible (or find a lib?)
 
-class SingleDigitMultiplicationQuestion extends Question {
+export class SingleDigitMultiplicationQuestion extends Question {
     a: number = getRandomInt(0, 10);
     b: number = getRandomInt(0, 10);
 
@@ -22,7 +22,7 @@ class SingleDigitMultiplicationQuestion extends Question {
     }
 }
 
-interface SingleDigitMultiplicationQuestionProps extends QuestionViewProps {
+export interface SingleDigitMultiplicationQuestionProps extends QuestionViewProps {
     question: SingleDigitMultiplicationQuestion
 }
 

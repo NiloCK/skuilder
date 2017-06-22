@@ -1,12 +1,13 @@
 import * as RX from 'reactxp';
-import Keybinder from '../appUtilities/Keybinder'
+// import * as React from 'react';
+// import Keybinder from '../appUtilities/Keybinder'
 import FingerCounter from './fingerCounter/fingerCounter'
 
 export interface NumpadProps extends RX.CommonProps {
     num: number;
     // counted?: number;
 }
-interface NumpadState {
+export interface NumpadState {
     counted?: number;
 }
 
@@ -39,29 +40,29 @@ const highlights: Array<Array<number>> = [
 ]
 
 class Numpad extends RX.Component<NumpadProps, NumpadState> {
-    private UIbindings: Keybinder;
+    // private UIbindings: Keybinder;
 
     constructor(props: NumpadProps) {
         super();
 
-        this.UIbindings = new Keybinder([
-            {
-                binding: 'left',
-                callback: (e: ExtendedKeyboardEvent) => {
-                    this.setState({
-                        counted: Math.max(0, (this.state.counted - 1))
-                    })
-                }
-            },
-            {
-                binding: 'right',
-                callback: (e: ExtendedKeyboardEvent) => {
-                    this.setState({
-                        counted: Math.min(10, (this.state.counted + 1))
-                    });
-                }
-            }
-        ])
+        // this.UIbindings = new Keybinder([
+        //     {
+        //         binding: 'left',
+        //         callback: (e) => {
+        //             this.setState({
+        //                 counted: Math.max(0, (this.state.counted - 1))
+        //             })
+        //         }
+        //     },
+        //     {
+        //         binding: 'right',
+        //         callback: (e) => {
+        //             this.setState({
+        //                 counted: Math.min(10, (this.state.counted + 1))
+        //             });
+        //         }
+        //     }
+        // ])
 
         this.state = {
             counted: 0
@@ -78,11 +79,11 @@ class Numpad extends RX.Component<NumpadProps, NumpadState> {
     }
 
     componentDidMount() {
-        this.UIbindings.bind();
+        // this.UIbindings.bind();
     }
 
     componentWillUnmount() {
-        this.UIbindings.unbind();
+        // this.UIbindings.unbind();
     }
 
     render() {
