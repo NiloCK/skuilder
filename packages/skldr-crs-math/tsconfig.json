@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "noResolve": false,
+        "jsx": "react",
+        "module": "commonjs",
+        "target": "es5",
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "outDir": "dist/",
+        "lib": [
+            "es5",
+            "dom"
+        ],
+        "types": [
+            "react"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "typeAcquisition": {
+        "enable": true
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}
