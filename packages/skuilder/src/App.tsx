@@ -12,7 +12,7 @@ import ProgressChart from './components/ProgressChart';
 import AdditionProblem from './questions/addition';
 import Multiplication from './questions/multiplication';
 import Division from './questions/division';
-import { QuestionView, QuestionViewProps } from './skuilder-base/BaseClasses'
+import { QuestionView, QuestionViewProps } from 'skldr-course-base'
 
 const qTypes = [
     Multiplication,
