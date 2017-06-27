@@ -4625,7 +4625,7 @@ react@^15.4.1, react@^15.5.4:
     object-assign "^4.1.0"
     prop-types "^15.5.7"
 
-reactxp@^0.42.0-rc.10, reactxp@^0.42.0-rc.12:
+reactxp@^0.42.0-rc.12:
   version "0.42.0-rc.12"
   resolved "https://registry.yarnpkg.com/reactxp/-/reactxp-0.42.0-rc.12.tgz#80fafb15206d3f33355680d0badf92d9e0335aac"
   dependencies:
@@ -5110,16 +5110,22 @@ sinon@^1.9.1:
     samsam "1.1.2"
     util ">=0.10.3 <1"
 
-skldr-course-base@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/skldr-course-base/-/skldr-course-base-0.0.0.tgz#595aae178b5ac862030431f20b513872e7b2210c"
+skldr-course-base@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/skldr-course-base/-/skldr-course-base-0.0.2.tgz#be040d9a157ff4ab8c14213f84b2639df7ba4a2b"
   dependencies:
     moment "^2.18.1"
     react "^15.5.4"
     react-dom "^15.5.4"
     react-native "^0.45.1"
     react-native-windows "^0.45.0-rc.1"
-    reactxp "^0.42.0-rc.10"
+    reactxp "^0.42.0-rc.12"
+
+skldr-crs-math@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/skldr-crs-math/-/skldr-crs-math-0.0.2.tgz#cd2091a03f1224ed75d45f6b3db4fa2bcd994ef8"
+  dependencies:
+    skldr-course-base "^0.0.2"
 
 slash@^1.0.0:
   version "1.0.0"
