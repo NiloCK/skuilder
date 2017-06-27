@@ -2,7 +2,7 @@
   "name": "skldr-crs-math",
   "version": "0.0.2",
   "description": "This Skuilder course is (broadly!) aimed toward students of K-12 math, or anyone else wanting to develop numeracy skills.",
-  "main": "dist/course.js",
+  "main": "dist/course",
   "types": "dest/course.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
