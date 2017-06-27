@@ -1,6 +1,6 @@
 {
   "name": "skldr-course-base",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "This package contains the required base classes for the creation of Skuilder courses",
   "main": "dist/BaseClasses.js",
   "types": "dist/BaseClasses.d.ts",
