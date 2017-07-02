@@ -9,15 +9,7 @@ import Recorder from './appUtilities/Recorder'
 import SessionReport from './components/sessionReport';
 import ProgressChart from './components/ProgressChart';
 
-import AdditionProblem from './questions/addition';
-import Multiplication from './questions/multiplication';
-import Division from './questions/division';
-import { QuestionView, QuestionViewProps } from 'skldr-course-base'
-
-const qTypes = [
-    Multiplication,
-    Division
-]
+import MathCrs from 'skldr-crs-math';
 
 const styles = {
     container: RX.Styles.createViewStyle({
@@ -189,12 +181,18 @@ class App extends RX.Component<null, AppState> {
     }
 
     renderCurrentQ(): JSX.Element | null {
-        console.log("Trying to render");
+        console.log("Trying to render the current question:");
 
-        const Question = qTypes[getRandomInt(0, 1)];
-        const questionProps = Question.getProps();
+        // const Question = qTypes[getRandomInt(0, 1)];
+        const Question = MathCrs.types[
+            getRandomInt(0, MathCrs.types.length - 1)
+        ];
+
+        let questionProps = Question.getProps();
+        questionProps.onanswer = this.newQuestion.bind(this);
 
         return <Question {...questionProps} onanswer={this.newQuestion.bind(this)} />
+
     }
 
     // Note that we define this as a variable rather than a normal method. Using this
