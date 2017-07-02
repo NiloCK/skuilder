@@ -4,6 +4,7 @@
         "noResolve": false,
         "sourceMap": true,
         "jsx": "react",
+        "reactNamespace": "RX",
         "module": "commonjs",
         "target": "es5",
         "experimentalDecorators": true,
