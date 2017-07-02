@@ -1,6 +1,6 @@
 {
   "name": "skldr-parse-course",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "A utility to parse the Typescript source code of Skuilder courses in order to extract course data.",
   "main": "index.js",
   "scripts": {

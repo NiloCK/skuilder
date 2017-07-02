@@ -1,6 +1,6 @@
 {
   "name": "skuilder",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -37,7 +37,8 @@
     "react-dom": "^15.4.1",
     "react-native": "^0.42.0",
     "react-native-windows": "^0.33.0",
-    "reactxp": "0.42.0-rc.1",
-    "skldr-course-base": "^0.0.0"
+    "reactxp": "^0.42.0-rc.12",
+    "skldr-course-base": "^0.0.2",
+    "skldr-crs-math": "^0.1.0"
   }
 }

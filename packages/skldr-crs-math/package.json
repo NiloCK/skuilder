@@ -1,0 +1,27 @@
+{
+  "name": "skldr-crs-math",
+  "version": "0.1.0",
+  "description": "This Skuilder course is (broadly!) aimed toward students of K-12 math, or anyone else wanting to develop numeracy skills.",
+  "main": "dist/course.js",
+  "types": "dist/course.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/nilock/skuilder"
+  },
+  "keywords": [
+    "math",
+    "tutoring",
+    "skuilder",
+    "ITS",
+    "education",
+    "spaced-repetition"
+  ],
+  "author": "Colin Kennedy",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "skldr-course-base": "^0.0.2"
+  }
+}
