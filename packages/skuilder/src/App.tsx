@@ -188,11 +188,9 @@ class App extends RX.Component<null, AppState> {
             getRandomInt(0, MathCrs.types.length - 1)
         ];
 
-        let questionProps = Question.getProps();
-        questionProps.onanswer = this.newQuestion.bind(this);
+        const questionProps = Question.getProps();
 
         return <Question {...questionProps} onanswer={this.newQuestion.bind(this)} />
-
     }
 
     // Note that we define this as a variable rather than a normal method. Using this
