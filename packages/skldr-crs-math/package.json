@@ -1,6 +1,6 @@
 {
   "name": "skldr-crs-math",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "This Skuilder course is (broadly!) aimed toward students of K-12 math, or anyone else wanting to develop numeracy skills.",
   "main": "dist/course.js",
   "types": "dist/course.d.ts",
