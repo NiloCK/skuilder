@@ -1,4 +1,4 @@
-import { QuestionRecord } from '../skuilder-base/BaseClasses'
+import { QuestionRecord } from 'skldr-course-base'
 import * as pouch from 'pouchdb-browser'
 // import * as auth from 'pouchdb-authentication'
 
