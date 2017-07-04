@@ -1,6 +1,6 @@
 {
   "name": "skldr-db",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The abstraction for database connections in skuilder deployments",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
