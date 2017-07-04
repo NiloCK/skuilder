@@ -9,5 +9,9 @@
     "url": "https://www.github.com/nilock/skuilder"
   },
   "author": "Colin Kennedy",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "pouchdb-authentication": "^0.5.5",
+    "pouchdb-browser": "^6.2.0"
+  }
 }
