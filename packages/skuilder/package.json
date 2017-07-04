@@ -39,6 +39,7 @@
     "react-native-windows": "^0.33.0",
     "reactxp": "^0.42.0-rc.12",
     "skldr-course-base": "^0.1.2",
-    "skldr-crs-math": "^0.1.2"
+    "skldr-crs-math": "^0.1.2",
+    "skldr-db": "^0.1.2"
   }
 }

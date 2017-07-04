@@ -4,7 +4,7 @@
 
 import * as RX from 'reactxp'
 import Keybinder from './appUtilities/Keybinder'
-import Recorder from './appUtilities/Recorder'
+import Recorder from 'skldr-db'
 
 import SessionReport from './components/sessionReport';
 import ProgressChart from './components/ProgressChart';

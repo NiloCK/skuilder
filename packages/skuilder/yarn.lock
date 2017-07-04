@@ -5110,9 +5110,9 @@ sinon@^1.9.1:
     samsam "1.1.2"
     util ">=0.10.3 <1"
 
-skldr-course-base@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/skldr-course-base/-/skldr-course-base-0.0.2.tgz#be040d9a157ff4ab8c14213f84b2639df7ba4a2b"
+skldr-course-base@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/skldr-course-base/-/skldr-course-base-0.1.2.tgz#e95ba1bec3f3031e0584c348709f2b6e735abeff"
   dependencies:
     moment "^2.18.1"
     react "^15.5.4"
@@ -5120,12 +5120,20 @@ skldr-course-base@^0.0.2:
     react-native "^0.45.1"
     react-native-windows "^0.45.0-rc.1"
     reactxp "^0.42.0-rc.12"
+    skldr-db "^0.1.2"
 
-skldr-crs-math@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/skldr-crs-math/-/skldr-crs-math-0.0.2.tgz#cd2091a03f1224ed75d45f6b3db4fa2bcd994ef8"
+skldr-crs-math@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/skldr-crs-math/-/skldr-crs-math-0.1.2.tgz#bc897b3a9f14a0715f4e29c990620688702fafbe"
   dependencies:
-    skldr-course-base "^0.0.2"
+    skldr-course-base "^0.1.2"
+
+skldr-db@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/skldr-db/-/skldr-db-0.1.2.tgz#b0f2a834e0d6ef87510005933e607f531bb78ade"
+  dependencies:
+    pouchdb-authentication "^0.5.5"
+    pouchdb-browser "^6.2.0"
 
 slash@^1.0.0:
   version "1.0.0"
