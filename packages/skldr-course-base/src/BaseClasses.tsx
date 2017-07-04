@@ -1,6 +1,6 @@
 import * as RX from 'reactxp';
 import * as Moment from 'moment';
-// import Recorder from '../appUtilities/Recorder'
+import Recorder from 'skldr-db';
 
 export abstract class Viewable<P extends RX.CommonProps> extends RX.Component<RX.CommonProps, null> {
     startTime: Moment.Moment;
@@ -92,14 +92,14 @@ export abstract class QuestionView<P extends QuestionViewProps> extends Viewable
 
         let a = this;
 
-        // Recorder.addRecord({
-        //     q: (this.constructor as ClassConstructor).name,
-        //     props: this.strippedProps(),
-        //     answer: this.userAnswer(),
-        //     isCorrect: isCorrect,
-        //     attempts: this.attempts,
-        //     time: this.timeSinceStart()
-        // })
+        Recorder.addRecord({
+            q: (this.constructor as ClassConstructor).name,
+            props: this.strippedProps(),
+            answer: this.userAnswer(),
+            isCorrect: isCorrect,
+            attempts: this.attempts,
+            time: this.timeSinceStart()
+        });
 
         input.value = "";
         this.animate(isCorrect);
