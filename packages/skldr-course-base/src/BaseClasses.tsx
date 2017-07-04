@@ -151,7 +151,7 @@ export interface QuestionViewProps extends RX.CommonProps {
 /**
  * The record of a completed question.
  */
-interface QuestionRecord {
+export interface QuestionRecord {
     q: string, // the ClassName of the question
     props: any,
     answer: any,
