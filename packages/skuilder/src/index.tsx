@@ -1,6 +1,6 @@
 import RX = require('reactxp');
 import App = require('./App');
-import Recorder from './appUtilities/Recorder'
+import Recorder from 'skldr-db'
 
 Recorder.init();
 
