@@ -1,5 +1,5 @@
 import * as RX from 'reactxp';
-import Recorder from '../appUtilities/Recorder';
+import Recorder, { QuestionRecord } from 'skldr-db';
 
 interface SessionReportProps {
     records: Array<any>
@@ -67,7 +67,7 @@ class SessionReport extends RX.Component<SessionReportProps, null> {
             </RX.View>
         )
     }
-    renderRecord(record: Object): JSX.Element {
+    renderRecord(record: QuestionRecord): JSX.Element {
         if (record.q === 'multiplication') {
             return (
                 <RX.Text style={record.correct ? styles.correct : styles.incorrect}>
