@@ -1,5 +1,5 @@
 import * as RX from 'reactxp';
-import Grader from '../appUtilities/Grader'
+import Grader, { Grade } from '../appUtilities/Grader'
 
 
 const styles = {
@@ -140,7 +140,7 @@ class ProgressChart extends RX.Component<ComponentChartProps, null> {
         const grade = Grader.Grade(this.props.questionType, a, b);
 
         return (
-            <td key={index} style={grade.color()}>
+            <td key={index} style={grade.getRGB()}>
 
             </td>
         )
