@@ -1,4 +1,4 @@
-import Recorder from './Recorder'
+import Recorder from 'skldr-db'
 
 export default class Grader {
     static Grade(qType: string, a: number, b: number) {
