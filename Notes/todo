@@ -1,4 +1,4 @@
-todo connect to local couchdb instace - get user tables working
+todo get user tables working - allegedly in the release pipeline for < mid August
 todo fix (ex(abs)tract?) keybinding system - make bindings visible at run time (at least by toggle)
 todo look at the process behind initializing a new course
 todo storing course data? -> should live in the couchdb instance
