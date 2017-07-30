@@ -1,3 +1,5 @@
-TODO get a react + ts project 'up and running'
-todo write some toy components
-todo install pouchdb and try loading react components from a db
+todo connect to local couchdb instace - get user tables working
+todo fix (ex(abs)tract?) keybinding system - make bindings visible at run time (at least by toggle)
+todo look at the process behind initializing a new course
+todo storing course data? -> should live in the couchdb instance
+todo distinguishing between personal and public course data - howto?
