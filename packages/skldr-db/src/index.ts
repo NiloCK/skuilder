@@ -5,15 +5,19 @@ pouch.plugin(require('pouchdb-authentication'))
 
 const auth = require('pouchdb-authentication');
 
-const key = 'record';
-const localDB: PouchDB.Database<PouchDB.Core.Encodable> = new pouch(key);
+const databaseName = 'record';
+const localDB: PouchDB.Database<PouchDB.Core.Encodable> = new pouch(databaseName);
 const remoteDB: PouchDB.Database<PouchDB.Core.Encodable> = new pouch(
-    'https://' +
-    'nilock.cloudant.com/' +
-    key, {
+    'http://localhost:5984/record',
+    {
         skip_setup: true
     }
 );
+
+// remoteDB.info(function (err, info) {
+//     console.log(info);
+// })
+
 
 localDB.sync(remoteDB, {
     live: true,
