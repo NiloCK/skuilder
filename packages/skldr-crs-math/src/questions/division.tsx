@@ -1,14 +1,15 @@
 import * as RX from 'reactxp';
 import Numpad from '../components/numpad';
 import { Question, QuestionView, QuestionViewProps } from 'skldr-course-base'
+import * as rand from '../util/rand'
 
 export interface SingleDigitDivisionProblemProps extends QuestionViewProps {
     question: SingleDigitDivisionQuestion
 }
 
 export class SingleDigitDivisionQuestion extends Question {
-    a: number = getRandomInt(0, 10);
-    b: number = getRandomInt(1, 10);
+    a: number = rand.getRandomInt(0, 10);
+    b: number = rand.getRandomInt(1, 10);
 
     isCorrect(answer: number) {
         return answer == this.a;
@@ -21,10 +22,6 @@ const styles = {
         padding: 15
     })
 }
-
-function getRandomInt(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-};
 
 class SingleDigitDivisionProblemView extends QuestionView<SingleDigitDivisionProblemProps> {
 

@@ -1,5 +1,6 @@
 import * as RX from 'reactxp';
 import { QuestionView, QuestionViewProps, Question } from 'skldr-course-base'
+import * as rand from '../util/rand'
 
 const styles = {
     form: RX.Styles.createViewStyle({
@@ -8,13 +9,9 @@ const styles = {
     })
 }
 
-function getRandomInt(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}; //todo move this somewhere sensible (or find a lib?)
-
 export class SingleDigitAdditionQuestion extends Question {
-    a: number = getRandomInt(0, 10);
-    b: number = getRandomInt(0, 10);
+    a: number = rand.getRandomInt(0, 10);
+    b: number = rand.getRandomInt(0, 10);
 
     isCorrect(answer: number) {
         return this.a + this.b == answer;
